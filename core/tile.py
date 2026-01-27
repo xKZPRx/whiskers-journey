@@ -3,9 +3,9 @@ from settings import TILE_SIZE
 
 
 class Tile:
-    def __init__(self, x, y, color):
+    def __init__(self, x, y, color, solid):
         self.rect = pygame.Rect(x, y, TILE_SIZE, TILE_SIZE)
-        self.solid = True
+        self.solid = solid
         self.color = color
 
     
