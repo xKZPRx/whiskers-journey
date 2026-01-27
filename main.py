@@ -40,7 +40,7 @@ class Game:
         player.on_ground = False
 
         for tile in self.level.tiles:
-            if player.rect.colliderect(tile.rect):
+            if player.rect.colliderect(tile.rect) and tile.solid:
 
                 if player.prev_rect.bottom <= tile.rect.top:
                     player.pos_y = tile.rect.top - player.rect.height
