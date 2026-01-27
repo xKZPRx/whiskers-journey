@@ -1,7 +1,12 @@
 import pygame
+import traceback
+import logging
 from settings import WINDOW_WIDTH, WINDOW_HEIGHT, FPS, BLACK_COLOR
 from core.level import Level
 from core.camera import Camera
+
+
+logging.basicConfig(filename='error.log', level=logging.ERROR)
 
 
 class Game:
@@ -73,9 +78,15 @@ class Game:
 
     def run(self):
         while self.running:
-            self.handle_events()
-            self.update()
-            self.draw()
+            try:
+                self.handle_events()
+                self.update()
+                self.draw()
+            except Exception as e:
+                print("An error occured!")
+                traceback.print_exc()
+                logging.error("An error occurred:\n%s", traceback.format_exc())
+                self.running = False
 
 
 def main():
