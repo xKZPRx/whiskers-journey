@@ -1,10 +1,10 @@
 import pygame
-from settings import PLAYER_SPEED, PLAYER_JUMP_SPEED, RED_COLOR
+from settings import TILE_SIZE, PLAYER_SPEED, PLAYER_JUMP_SPEED, RED_COLOR
 
 
 class Player:
     def __init__(self, x, y):
-        self.rect = pygame.Rect(x, y, 32, 32)
+        self.rect = pygame.Rect(x, y, TILE_SIZE, TILE_SIZE)
         self.vel_y = 0
         self.speed = PLAYER_SPEED
         self.jump_speed = PLAYER_JUMP_SPEED
