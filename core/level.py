@@ -16,6 +16,9 @@ class Level:
 
         for y, line in enumerate(level_map):
             for x, char in enumerate(line.strip()):
+                self.width = x * TILE_SIZE
+                self.height = y * TILE_SIZE
+
                 match char:
                     case "1":
                         self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE))

@@ -21,7 +21,7 @@ class Game:
 
     def load_resources(self):
         self.level = Level(self.level_index)
-        self.camera = Camera()
+        self.camera = Camera(self.level.width, self.level.height)
 
 
     def handle_events(self):
