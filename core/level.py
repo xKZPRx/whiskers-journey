@@ -1,5 +1,5 @@
 from core.tile import Tile
-from settings import TILE_SIZE
+from settings import TILE_SIZE, WHITE_COLOR, YELLOW_COLOR
 from core.player import Player
 
 
@@ -21,15 +21,15 @@ class Level:
 
                 match char:
                     case "1":
-                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE))
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR))
                     case "2":
-                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE))
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR))
                     case "P":
                         self.player = Player(x * TILE_SIZE, y * TILE_SIZE)
                     case "F":
                         pass
                     case "K":
-                        pass
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, YELLOW_COLOR))
                     case "D":
                         pass
                     case ".":
