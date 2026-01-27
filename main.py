@@ -1,7 +1,7 @@
 import pygame
 from settings import WINDOW_WIDTH, WINDOW_HEIGHT, FPS, BLACK_COLOR
 from core.level import Level
-from core.player import Player
+from core.camera import Camera
 
 
 class Game:
@@ -21,6 +21,7 @@ class Game:
 
     def load_resources(self):
         self.level = Level(self.level_index)
+        self.camera = Camera()
 
 
     def handle_events(self):
@@ -34,7 +35,7 @@ class Game:
         self.level.player.on_ground = False
 
         for tile in self.level.tiles:
-            if player.rect.colliderect(tile):
+            if player.rect.colliderect(tile.rect):
 
                 if player.prev_rect.bottom <= tile.rect.top:
                     player.rect.bottom = tile.rect.top
@@ -54,18 +55,18 @@ class Game:
                     player.vel_x = 0
 
 
-
     def update(self):
         self.dt = self.clock.tick(FPS) / 1000
 
         self.level.player.update(self.dt)
+        self.camera.update(self.level.player.rect)
         self.handle_collisions()
 
 
     def draw(self):
         self.screen.fill(BLACK_COLOR)
-        self.level.draw(self.screen)
-        self.level.player.draw(self.screen)
+        self.level.draw(self.screen, self.camera)
+        self.level.player.draw(self.screen, self.camera)
 
         pygame.display.flip()
 

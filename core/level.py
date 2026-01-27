@@ -35,6 +35,7 @@ class Level:
                         print("No char match found.")
 
 
-    def draw(self, screen):
+    def draw(self, screen, camera):
         for tile in self.tiles:
-            tile.draw(screen)
+            draw_rect = camera.apply(tile.rect)
+            tile.draw(screen, draw_rect)

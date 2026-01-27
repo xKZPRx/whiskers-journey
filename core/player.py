@@ -38,5 +38,6 @@ class Player:
         self.rect.y += self.vel_y * dt
 
 
-    def draw(self, screen):
-        pygame.draw.rect(screen, RED_COLOR, self.rect)
+    def draw(self, screen, camera):
+        draw_rect = camera.apply(self.rect)
+        pygame.draw.rect(screen, RED_COLOR, draw_rect)

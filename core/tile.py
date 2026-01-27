@@ -8,5 +8,5 @@ class Tile:
         self.solid = True
 
     
-    def draw(self, screen):
-        pygame.draw.rect(screen, WHITE_COLOR, self.rect)
+    def draw(self, screen, draw_rect):
+        pygame.draw.rect(screen, WHITE_COLOR, draw_rect)
