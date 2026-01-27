@@ -21,7 +21,6 @@ class Game:
 
     def load_resources(self):
         self.level = Level(self.level_index)
-        self.player = Player(100, 100)
 
 
     def handle_events(self):
@@ -33,13 +32,13 @@ class Game:
     def update(self):
         self.dt = self.clock.tick(FPS) / 1000
 
-        self.player.update(self.dt)
+        self.level.player.update(self.dt)
 
 
     def draw(self):
         self.screen.fill(BLACK_COLOR)
         self.level.draw(self.screen)
-        self.player.draw(self.screen)
+        self.level.player.draw(self.screen)
 
         pygame.display.flip()
 

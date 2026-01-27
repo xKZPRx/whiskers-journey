@@ -1,5 +1,6 @@
 from core.tile import Tile
 from settings import TILE_SIZE
+from core.player import Player
 
 
 class Level:
@@ -15,8 +16,23 @@ class Level:
 
         for y, line in enumerate(level_map):
             for x, char in enumerate(line.strip()):
-                if char == "#":
-                    self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE))
+                match char:
+                    case "1":
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE))
+                    case "2":
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE))
+                    case "P":
+                        self.player = Player(x * TILE_SIZE, y * TILE_SIZE)
+                    case "F":
+                        pass
+                    case "K":
+                        pass
+                    case "D":
+                        pass
+                    case ".":
+                        pass
+                    case _:
+                        print("No char match found.")
 
 
     def draw(self, screen):
