@@ -37,27 +37,28 @@ class Game:
 
     def handle_collisions(self):
         player = self.level.player
-        self.level.player.on_ground = False
+        player.on_ground = False
 
         for tile in self.level.tiles:
             if player.rect.colliderect(tile.rect):
 
                 if player.prev_rect.bottom <= tile.rect.top:
-                    player.rect.bottom = tile.rect.top
+                    player.pos_y = tile.rect.top - player.rect.height
                     player.vel_y = 0
                     player.on_ground = True
 
                 elif player.prev_rect.top >= tile.rect.bottom:
-                    player.rect.top = tile.rect.bottom
+                    player.pos_y = tile.rect.bottom
                     player.vel_y = 0
 
-                elif player.prev_rect.left >= tile.rect.right:
-                    player.rect.left = tile.rect.right 
-                    player.vel_x = 0
-
                 elif player.prev_rect.right <= tile.rect.left:
-                    player.rect.right = tile.rect.left
-                    player.vel_x = 0
+                    player.pos_x = tile.rect.left - player.rect.width
+
+                elif player.prev_rect.left >= tile.rect.right:
+                    player.pos_x = tile.rect.right
+
+        player.rect.x = int(player.pos_x)
+        player.rect.y = int(player.pos_y)
 
 
     def update(self):
