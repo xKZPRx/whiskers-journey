@@ -29,10 +29,37 @@ class Game:
                 self.running = False
 
 
+    def handle_collisions(self):
+        player = self.level.player
+        self.level.player.on_ground = False
+
+        for tile in self.level.tiles:
+            if player.rect.colliderect(tile):
+
+                if player.prev_rect.bottom <= tile.rect.top:
+                    player.rect.bottom = tile.rect.top
+                    player.vel_y = 0
+                    player.on_ground = True
+
+                elif player.prev_rect.top >= tile.rect.bottom:
+                    player.rect.top = tile.rect.bottom
+                    player.vel_y = 0
+
+                elif player.prev_rect.left >= tile.rect.right:
+                    player.rect.left = tile.rect.right 
+                    player.vel_x = 0
+
+                elif player.prev_rect.right <= tile.rect.left:
+                    player.rect.right = tile.rect.left
+                    player.vel_x = 0
+
+
+
     def update(self):
         self.dt = self.clock.tick(FPS) / 1000
 
         self.level.player.update(self.dt)
+        self.handle_collisions()
 
 
     def draw(self):

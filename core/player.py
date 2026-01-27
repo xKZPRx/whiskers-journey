@@ -12,12 +12,13 @@ class Player:
 
 
     def handle_input(self, dt):
-        keys = pygame.key.get_pressed()
+        self.vel_x = 0
 
+        keys = pygame.key.get_pressed()
         if keys[pygame.K_a] or keys[pygame.K_LEFT]:
-            self.rect.x -= self.speed * dt
+            self.vel_x -= self.speed * dt
         if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
-            self.rect.x += self.speed * dt
+            self.vel_x += self.speed * dt
         if keys[pygame.K_SPACE] and self.on_ground:
             self.vel_y = self.jump_speed
             self.on_ground = False
@@ -26,12 +27,15 @@ class Player:
     def apply_gravity(self, dt):
         if not self.on_ground:
             self.vel_y += 1000 * dt
-            self.rect.y += self.vel_y * dt
 
 
     def update(self, dt):
+        self.prev_rect = self.rect.copy()
         self.handle_input(dt)
         self.apply_gravity(dt)
+
+        self.rect.x += self.vel_x
+        self.rect.y += self.vel_y * dt
 
 
     def draw(self, screen):
