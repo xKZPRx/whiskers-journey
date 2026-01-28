@@ -57,6 +57,16 @@ class Game:
                 elif player.prev_rect.left >= tile.rect.right:
                     player.pos_x = tile.rect.right
 
+        if player.pos_x <= 0:
+            player.pos_x = 0
+
+        if player.pos_x >= self.level.width - player.rect.width:
+            player.pos_x = self.level.width - player.rect.width
+            
+        if player.pos_y <= 0:
+            player.pos_y = 0
+            player.vel_y = 0
+
         player.rect.x = int(player.pos_x)
         player.rect.y = int(player.pos_y)
 
