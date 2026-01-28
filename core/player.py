@@ -28,8 +28,7 @@ class Player:
 
 
     def apply_gravity(self, dt):
-        if not self.on_ground:
-            self.vel_y += 1000 * dt
+        self.vel_y += 1000 * dt
 
 
     def update(self, dt):
