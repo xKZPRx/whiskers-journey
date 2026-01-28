@@ -46,16 +46,20 @@ class Game:
                     player.pos_y = tile.rect.top - player.rect.height
                     player.vel_y = 0
                     player.on_ground = True
+                    player.rect.y = int(player.pos_y)
 
-                elif player.prev_rect.top >= tile.rect.bottom:
+                if player.prev_rect.top >= tile.rect.bottom:
                     player.pos_y = tile.rect.bottom
                     player.vel_y = 0
+                    player.rect.y = int(player.pos_y)
 
-                elif player.prev_rect.right <= tile.rect.left:
+                if player.prev_rect.right <= tile.rect.left:
                     player.pos_x = tile.rect.left - player.rect.width
+                    player.rect.x = int(player.pos_x)
 
-                elif player.prev_rect.left >= tile.rect.right:
+                if player.prev_rect.left >= tile.rect.right:
                     player.pos_x = tile.rect.right
+                    player.rect.x = int(player.pos_x)
 
         if player.pos_x <= 0:
             player.pos_x = 0
