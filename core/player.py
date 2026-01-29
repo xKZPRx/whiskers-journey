@@ -43,15 +43,8 @@ class Player:
 
 
     def update(self, dt):
-        self.prev_rect = self.rect.copy()
         self.handle_input()
         self.apply_gravity(dt)
-
-        self.pos_x += self.vel_x * dt
-        self.pos_y += self.vel_y * dt
-
-        self.rect.x = int(self.pos_x)
-        self.rect.y = int(self.pos_y)
 
 
     def draw(self, screen, camera):
