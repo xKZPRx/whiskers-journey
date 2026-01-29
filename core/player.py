@@ -13,6 +13,9 @@ class Player:
         self.jump_speed = PLAYER_JUMP_SPEED
         self.on_ground = False
 
+        self.fishes = 0
+        self.has_key = False
+
 
     def handle_input(self):
         self.vel_x = 0
@@ -29,6 +32,14 @@ class Player:
 
     def apply_gravity(self, dt):
         self.vel_y += 1000 * dt
+
+
+    def collect_fish(self):
+        self.fishes += 1
+
+
+    def collect_key(self):
+        self.has_key = True
 
 
     def update(self, dt):

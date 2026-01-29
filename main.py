@@ -26,6 +26,11 @@ class Game:
 
     def load_resources(self):
         self.level = Level(self.level_index)
+
+        if not self.level.loaded:
+            self.running = False
+            return
+
         self.camera = Camera(self.level.width, self.level.height)
 
 
@@ -79,6 +84,11 @@ class Game:
         self.dt = self.clock.tick(FPS) / 1000
 
         self.level.player.update(self.dt)
+        if self.level.update():
+            self.level_index += 1
+            self.load_resources()
+            return
+
         self.camera.update(self.level.player.rect)
         self.handle_collisions()
 
@@ -95,7 +105,15 @@ class Game:
         while self.running:
             try:
                 self.handle_events()
+
+                if not self.running:
+                    break
+
                 self.update()
+
+                if not self.running:
+                    break
+
                 self.draw()
             except Exception as e:
                 print("An error occured!")
