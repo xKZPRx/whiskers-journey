@@ -27,27 +27,44 @@ class Level:
         max_y = 0
 
         for y, line in enumerate(level_map):
-            for x, char in enumerate(line.strip()):
+            tiles = line.split()
+            for x, tile in enumerate(tiles):
                 px = x * TILE_SIZE
                 py = y * TILE_SIZE
 
                 max_x = max(max_x, px + TILE_SIZE)
                 max_y = max(max_y, py + TILE_SIZE)
 
-                match char:
-                    case "1":
+                match tile:
+                    case "00":
                         self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR, True, assets.DIRT_BLOCK_IMG))
-                    case "2":
+                    case "01":
                         self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR, True, assets.GRASS_BLOCK_IMG))
-                    case "P":
+                    case "02":
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR, False, assets.GRASS_V1_IMG))
+                    case "03":
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR, False, assets.GRASS_V2_IMG))
+                    case "04":
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR, False, assets.GRASS_V3_IMG))
+                    case "05":
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR, False, assets.GRASS_V4_IMG))
+                    case "06":
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR, False, assets.FLOWERS_V1_IMG))
+                    case "07":
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR, False, assets.FLOWERS_V2_IMG))
+                    case "08":
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR, False, assets.ROCK_V1_IMG))
+                    case "09":
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR, False, assets.ROCK_V2_IMG))
+                    case "PP":
                         self.player = Player(x * TILE_SIZE, y * TILE_SIZE)
-                    case "F":
+                    case "FF":
                         self.fishes.append(Tile(x * TILE_SIZE, y * TILE_SIZE, BLUE_COLOR, False, assets.FISH_IMG))
-                    case "K":
+                    case "KK":
                         self.keys.append(Tile(x * TILE_SIZE, y * TILE_SIZE, YELLOW_COLOR, False, assets.KEY_IMG))
-                    case "D":
+                    case "DD":
                         self.doors.append(Tile(x * TILE_SIZE, y * TILE_SIZE, BROWN_COLOR, False))
-                    case ".":
+                    case "..":
                         pass
                     case _:
                         print("No char match found.")
