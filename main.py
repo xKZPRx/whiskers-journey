@@ -4,6 +4,7 @@ import logging
 from settings import WINDOW_WIDTH, WINDOW_HEIGHT, FPS, BLACK_COLOR
 from core.level import Level
 from core.camera import Camera
+import core.assets as assets
 
 
 logging.basicConfig(filename='error.log', level=logging.ERROR)
@@ -21,6 +22,7 @@ class Game:
         self.running = True
         self.level_index = 1
 
+        assets.load_assets()
         self.load_resources()
 
 

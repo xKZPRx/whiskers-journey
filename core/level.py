@@ -1,6 +1,7 @@
 from core.tile import Tile
 from settings import TILE_SIZE, WHITE_COLOR, YELLOW_COLOR, BLUE_COLOR, BROWN_COLOR
 from core.player import Player
+import core.assets as assets
 
 
 class Level:
@@ -35,9 +36,9 @@ class Level:
 
                 match char:
                     case "1":
-                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR, True))
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR, True, assets.DIRT_BLOCK_IMG))
                     case "2":
-                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR, True))
+                        self.tiles.append(Tile(x * TILE_SIZE, y * TILE_SIZE, WHITE_COLOR, True, assets.GRASS_BLOCK_IMG))
                     case "P":
                         self.player = Player(x * TILE_SIZE, y * TILE_SIZE)
                     case "F":
