@@ -42,9 +42,9 @@ class Level:
                     case "P":
                         self.player = Player(x * TILE_SIZE, y * TILE_SIZE)
                     case "F":
-                        self.fishes.append(Tile(x * TILE_SIZE, y * TILE_SIZE, BLUE_COLOR, False))
+                        self.fishes.append(Tile(x * TILE_SIZE, y * TILE_SIZE, BLUE_COLOR, False, assets.FISH_IMG))
                     case "K":
-                        self.keys.append(Tile(x * TILE_SIZE, y * TILE_SIZE, YELLOW_COLOR, False))
+                        self.keys.append(Tile(x * TILE_SIZE, y * TILE_SIZE, YELLOW_COLOR, False, assets.KEY_IMG))
                     case "D":
                         self.doors.append(Tile(x * TILE_SIZE, y * TILE_SIZE, BROWN_COLOR, False))
                     case ".":
